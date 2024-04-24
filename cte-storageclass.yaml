@@ -1,0 +1,22 @@
+# Definição do tipo do storage que o pod final irá acessar
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: k8s-cte-sc
+provisioner: csi.cte.cpl.thalesgroup.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+parameters:
+  # Nome de dominio ou IP da Manager (Obrigatório)
+  key_manager_addr: 10.3.2.251
+
+  # Nome do K8s Storage Group definido na Manager (Obrigatório)
+  k8_storage_group: k8s-cte-sg
+
+  # Nome do Secret como definido em cte-csi-cmtoken.yaml (Obrigatório)
+  registration_token_secret: cm-reg-token
+
+  # Tempo em minutos antes do desregistro que o agente vai esperar sem guardpoints
+  # após ser realizado o unguard deles. Deve ser uma string ao invés de int
+  registration_period: "10"

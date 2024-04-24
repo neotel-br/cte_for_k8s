@@ -1,0 +1,17 @@
+# PVC para os pods
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cte-claim
+  annotations:
+    # Nome da política na Manager
+    csi.cte.cpl.thalesgroup.com/policy: k8s-cte-policy
+    # Nome do claim para acesso ao PV original como definido em pvc.yaml
+    csi.cte.cpl.thalesgroup.com/source_pvc: nfs-pvc
+spec:
+  storageClassName: k8s-cte-sc
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ki
