@@ -48,7 +48,7 @@ Consulte os repositórios da distro.
 
 2. Configure os diretórios a serem exportados via NFS. Edite o arquivo:`/etc/exports`):
 ```
-/nfs *(rw, async, no_root_squash, no_subtree_check)
+/nfs *(rw,async,no_root_squash,no_subtree_check)
 ```
 
 3. Exporte os diretórios:
